@@ -6,11 +6,11 @@
 /*   By: dezzeddi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:59:12 by dezzeddi          #+#    #+#             */
-/*   Updated: 2018/06/06 13:59:15 by dezzeddi         ###   ########.fr       */
+/*   Updated: 2018/06/06 21:24:19 by dezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 static int		count_digits(unsigned long long n)
 {

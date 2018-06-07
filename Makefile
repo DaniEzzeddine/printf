@@ -26,9 +26,7 @@ SOURCES = convert.c \
 		  ft_handle_uint.c \
 		  ft_parse_specifier.c
 
-SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
-
-OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+OBJS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
@@ -40,14 +38,12 @@ $(NAME): $(OBJS)
 
 $(DIR_O)/%.o: $(DIR_S)/%.c
 	@mkdir -p temporary
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+	@$(CC) $(FLAGS) -I -o $@ -c $<
 
 norme:
 	norminette ./libft/
 	@echo
-	norminette ./$(HEADER)/
-	@echo
-	norminette ./$(DIR_S)/
+	norminette
 
 clean:
 	@rm -f $(OBJS)

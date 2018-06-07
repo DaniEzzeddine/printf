@@ -6,7 +6,7 @@
 /*   By: dezzeddi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:06:36 by dezzeddi          #+#    #+#             */
-/*   Updated: 2018/06/06 15:06:39 by dezzeddi         ###   ########.fr       */
+/*   Updated: 2018/06/06 21:24:01 by dezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct		s_flags
 {
