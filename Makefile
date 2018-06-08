@@ -1,16 +1,18 @@
-C = clang
+#C = clang
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror -O2
+#FLAGS = -Wall -Wextra -Werror -O2
 
-LIBFT = libft
+#LIBFT = libft
 
-DIR_S = sources
+#DIR_S = sources
 
-HEADER = include
+#DIR_O = temporary
 
-SOURCES = convert.c \
+#HEADER = include
+
+#SOURCES = convert.c \
 		  ft_handle_addr.c \
 		  ft_handle_char.c \
 		  ft_handle_int.c \
@@ -24,29 +26,34 @@ SOURCES = convert.c \
 		  ft_handle_uint.c \
 		  ft_parse_specifier.c
 
-OBJS = $(SOURCES:.c=.o)
+#OBJS = $(SOURCES:.c=.o)
 
-all: $(NAME)
+#all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT)
-	gcc -c -I$(FLAGS) $(SOURCES)
-	ar rc $(NAME) $(SOURCES)
+	gcc -c *.c libft/*.c libft/*.c
+	ar rc $(NAME) *.o
 	ranlib $(NAME)
+#	@make -C $(LIBFT)
+#	@ar rc $(NAME) $(OBJS)
+#	@ranlib $(NAME)
 
-# $(OBJ): $(SOURCES)
-#	gcc -c -I$(FLAGS) $(SOURCES)
-norme:
-	norminette ./libft/
-	@echo
-	norminette
+#$(DIR_O)/%.o: $(DIR_S)/%.c
+#	@mkdir -p temporary
+#	@$(CC) $(FLAGS) -I -o $@ -c $<
 
-clean:
+#norme:
+#	norminette ./libft/
+#	@echo
+#	norminette
+
+#clean:
 	@rm -f $(OBJS)
-	@make clean -C $(LIBFT)
+	@rm -rf $(DIR_O)
+#	@make clean -C $(LIBFT)
 
 fclean: clean
 	@rm -f $(NAME)
-	@make fclean -C $(LIBFT)
+#	@make fclean -C $(LIBFT)
 
 re: fclean all
