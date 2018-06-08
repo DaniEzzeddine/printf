@@ -27,7 +27,7 @@ static int		count_digits(unsigned long long n)
 	return (i);
 }
 
-static void		add_ox(t_param *args, char **value, char **prefix, unsigned long long n)
+static void		add_ox(t_param *args, char **value, char **prefix)
 {
 	if (args->flags.hashtag)
 	{
@@ -97,7 +97,7 @@ char			*ft_handle_octal(t_param *args, va_list *ap)
 	args->l = count_digits(n);
 	value_to_print = get_precision(args, n);
 	prefix_postfix = get_width(args);
-	add_ox(args, &value_to_print, &prefix_postfix, n);
+	add_ox(args, &value_to_print, &prefix_postfix);
 	if (args->flags.minus)
 		res = ft_strjoin(value_to_print, prefix_postfix);
 	else

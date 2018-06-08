@@ -8,8 +8,6 @@ LIBFT = libft
 
 DIR_S = sources
 
-DIR_O = temporary
-
 HEADER = include
 
 SOURCES = convert.c \
@@ -32,11 +30,12 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT)
+	gcc -c -I$(FLAGS) $(SOURCES)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
 $(OBJ): $(SOURCES)
-	gcc -c -I$(CFLAGS) $(SOURCES)
+	gcc -c -I$(FLAGS) $(SOURCES)
 norme:
 	norminette ./libft/
 	@echo
@@ -44,7 +43,6 @@ norme:
 
 clean:
 	@rm -f $(OBJS)
-	@rm -rf $(DIR_O)
 	@make clean -C $(LIBFT)
 
 fclean: clean
