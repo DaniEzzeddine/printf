@@ -31,7 +31,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
 	gcc -c -I$(FLAGS) $(SOURCES)
-	ar rc $(NAME) $(OBJS)
+	ar rc $(NAME) $(SOURCES)
 	ranlib $(NAME)
 
 # $(OBJ): $(SOURCES)
