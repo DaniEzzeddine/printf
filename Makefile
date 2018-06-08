@@ -29,13 +29,13 @@ OBJS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C $(LIBFT)
+	make -C $(LIBFT)
 	gcc -c -I$(FLAGS) $(SOURCES)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
-$(OBJ): $(SOURCES)
-	gcc -c -I$(FLAGS) $(SOURCES)
+# $(OBJ): $(SOURCES)
+#	gcc -c -I$(FLAGS) $(SOURCES)
 norme:
 	norminette ./libft/
 	@echo
