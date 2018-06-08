@@ -35,10 +35,8 @@ $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-$(DIR_O)/%.o: $(DIR_S)/%.c
-	@mkdir -p temporary
-	@$(CC) $(FLAGS) -I -o $@ -c $<
-
+$(OBJ): $(SOURCES)
+	gcc -c -I$(CFLAGS) $(SOURCES)
 norme:
 	norminette ./libft/
 	@echo
