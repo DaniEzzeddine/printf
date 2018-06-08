@@ -59,13 +59,14 @@ static char		*get_precision(t_param *args, unsigned long long n)
 	int		num_of_dig;
 
 	num_of_dig = count_digits(n);
+	temp = ft_itoa_base_for_uint(n, 16, args->specifier);
+	num_of_dig = ft_strlen(temp);
 	dig_to_print = args->precision > num_of_dig ? args->precision : num_of_dig;
 	res = ft_strnew(dig_to_print + 1);
 	ft_bzero(res, dig_to_print + 1);
 	start_of_res = res;
 	while (args->precision > num_of_dig++)
 		*(res++) = '0';
-	temp = ft_itoa_base_for_uint(n, 16, args->specifier);
 	if (n == 0 && args->dot)
 		temp = ft_strsub("", 0, 0);
 	ft_strcpy(res, temp);

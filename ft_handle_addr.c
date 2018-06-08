@@ -29,17 +29,13 @@ static int		count_digits(long long n)
 	return (i);
 }
 
-static char		*convert_to_memory_type(unsigned long long n)
+static void		add_ox(t_param *args, char **value, char **prefix)
 {
-	char		*res;
-	char		*start_of_string;
-	char		*str;
-
-	start_of_string = malloc(sizeof(char) * 2 + 1);
-	ft_bzero(start_of_string, 3);
-	str = ft_itoa_base_for_uint(n, 16, 'x');
-	res = ft_strjoin(start_of_string, str);
-	return (res);
+		if (!args->dot && !args->flags.minus && args->flags.zero)
+			*prefix = ft_strjoin(ft_strsub("0x", 0, 2), *prefix);
+		else
+			*value = ft_strjoin(ft_strsub("0x", 0, 2), *value);
+	return ;
 }
 
 static char		*get_precision(t_param *args, long long n)
@@ -51,6 +47,10 @@ static char		*get_precision(t_param *args, long long n)
 	int		num_of_dig;
 
 	num_of_dig = count_digits(n);
+	temp = ft_itoa_base_for_uint(n, 16, 'x');
+	if (n == 0 && args->dot)
+		temp = ft_strnew(0);
+	num_of_dig = ft_strlen(temp);
 	dig_to_print = args->precision > num_of_dig ? args->precision : num_of_dig;
 	res = ft_strnew(dig_to_print + 1);
 	start_of_res = res;
@@ -58,9 +58,8 @@ static char		*get_precision(t_param *args, long long n)
 		*(res++) = '0';
 	if (n < 0)
 		n = -n;
-	temp = convert_to_memory_type(n);
 	ft_strcpy(res, temp);
-	args->l = ft_strlen(start_of_res);
+	args->l = ft_strlen(start_of_res) + 2;
 	ft_memdel((void **)&temp);
 	return (start_of_res);
 }
@@ -99,6 +98,7 @@ char			*ft_handle_addr(t_param *args, va_list *ap)
 	args->l = count_digits(n);
 	value_to_print = get_precision(args, n);
 	prefix_postfix = get_width(args);
+	add_ox(args, &value_to_print, &prefix_postfix);
 	if (args->flags.minus)
 		res = ft_strjoin(value_to_print, prefix_postfix);
 	else

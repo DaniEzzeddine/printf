@@ -12,15 +12,13 @@
 
 #include "ft_printf.h"
 
-static int		count_digits(long long n)
+static int		count_digits(unsigned long long n)
 {
 	int			i;
-	long long	temp;
+	unsigned long long	temp;
 
 	temp = n;
 	i = 1;
-	if (temp < 0)
-		temp = -temp;
 	while (temp > 9)
 	{
 		temp /= 10;
@@ -29,7 +27,7 @@ static int		count_digits(long long n)
 	return (i);
 }
 
-static char		*get_precision(t_param *args, long long n)
+static char		*get_precision(t_param *args, unsigned long long n)
 {
 	char	*temp;
 	char	*res;
@@ -44,9 +42,9 @@ static char		*get_precision(t_param *args, long long n)
 	start_of_res = res;
 	while (args->precision > num_of_dig++)
 		*(res++) = '0';
-	if (n < 0)
-		n = -n;
-	temp = ft_itoa(n);
+	temp = ft_itoaf(n);
+	if (n == 0 && args->dot)
+		temp = ft_strsub("", 0, 0);
 	ft_strcpy(res, temp);
 	args->l = ft_strlen(start_of_res);
 	free(temp);

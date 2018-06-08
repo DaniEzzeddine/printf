@@ -32,7 +32,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT)
-	@cp libft/libft.a ./$(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 

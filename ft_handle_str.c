@@ -16,14 +16,20 @@ static char		*get_width(t_param *args)
 {
 	int		num;
 	char	*str;
+	char	zero_or_space;
 
+	zero_or_space = ' ';
 	if (args->precision > 0 && args->precision < args->l)
 		num = args->width - args->precision;
+	else if (args->precision == 0 && args->dot)
+		num = args->width;
 	else
 		num = args->width - args->l;
+	if (!args->flags.minus && args->flags.zero)
+		zero_or_space = '0';
 	num = (num < 0) ? 0 : num;
 	str = ft_strnew(num);
-	ft_memset(str, ' ', num);
+	ft_memset(str, zero_or_space, num);
 	return (str);
 }
 
@@ -33,6 +39,8 @@ static char		*get_precision(t_param *args, char *temp)
 
 	if (args->precision > 0 && args->precision < args->l)
 		str = ft_strsub(temp, 0, args->precision);
+	else if (args->precision == 0 && args->dot)
+		str = ft_strnew(0);
 	else
 		str = ft_strsub(temp, 0, args->l);
 	return (str);

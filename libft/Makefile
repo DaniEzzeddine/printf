@@ -79,7 +79,8 @@ OBJ			= $(FILES:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 $(OBJ): $(SRCS)
 	gcc -c -I$(CFLAGS) $(SRCS)

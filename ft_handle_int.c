@@ -79,7 +79,7 @@ static char		*get_width(t_param *args, long long n)
 	if (!args->dot && !args->flags.minus && args->flags.zero)
 	{
 		check_for_zero = 1;
-		if (n < 0)
+		if (n < 0 || args->flags.space)
 			(args->l)++;
 	}
 	sym_to_print = args->width > args->l ? args->width : 0;
@@ -87,7 +87,9 @@ static char		*get_width(t_param *args, long long n)
 	start_of_res = res;
 	ft_bzero(res, sym_to_print + 1);
 	zero_or_space = (check_for_zero ? '0' : ' ');
-	if (n < 0 && check_for_zero)
+	if (args->flags.space && !args->flags.plus && check_for_zero)
+		*(res)++ = ' ';
+	else if (n < 0 && check_for_zero)
 		*(res++) = '-';
 	else if (args->flags.plus && check_for_zero && args->l++)
 		*(res++) = '+';
@@ -103,9 +105,12 @@ char			*ft_handle_int(t_param *args, va_list *ap)
 	char			*prefix_postfix;
 	long long int	n;
 
-	n = convert(args, ap);
+	if (args->specifier == 'D')
+		n = (long long)va_arg(*ap, long long);
+	else
+		n = convert(args, ap);
 	args->l = count_digits(n);
-	if (n < 0 || args->flags.plus)
+	if (n < 0 || args->flags.plus || args->flags.space)
 		(args->l)++;
 	value_to_print = get_precision(args, n);
 	prefix_postfix = get_width(args, n);

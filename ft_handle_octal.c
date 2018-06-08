@@ -27,7 +27,7 @@ static int		count_digits(unsigned long long n)
 	return (i);
 }
 
-static void		add_ox(t_param *args, char **value, char **prefix)
+static void		add_ox(t_param *args, char **value, char **prefix, unsigned long long n)
 {
 	if (args->flags.hashtag)
 	{
@@ -47,16 +47,15 @@ static char		*get_precision(t_param *args, unsigned long long n)
 	int		dig_to_print;
 	int		num_of_dig;
 
-	num_of_dig = count_digits(n);
+	temp = ft_itoa_base_for_uint(n, 8, 'x');
+	if (n == 0 && (args->dot || args->flags.hashtag))
+		temp = ft_strnew(0);
+	num_of_dig = ft_strlen(temp);
 	dig_to_print = args->precision > num_of_dig ? args->precision : num_of_dig;
 	res = ft_strnew(dig_to_print + 1);
-	ft_bzero(res, dig_to_print + 1);
 	start_of_res = res;
 	while (args->precision > num_of_dig++)
 		*(res++) = '0';
-	temp = ft_itoa_base_for_uint(n, 8, 'x');
-	if (n == 0 && args->dot)
-		temp = ft_strnew(0);
 	ft_strcpy(res, temp);
 	args->l = ft_strlen(start_of_res);
 	ft_memdel((void **)&temp);
@@ -91,11 +90,14 @@ char			*ft_handle_octal(t_param *args, va_list *ap)
 	char					*prefix_postfix;
 	unsigned long long int	n;
 
-	n = convert_u(args, ap);
+	if (args->specifier == 'O')
+		n = (unsigned long long)va_arg(*ap, unsigned long long);
+	else
+		n = convert_u(args, ap);
 	args->l = count_digits(n);
 	value_to_print = get_precision(args, n);
 	prefix_postfix = get_width(args);
-	add_ox(args, &value_to_print, &prefix_postfix);
+	add_ox(args, &value_to_print, &prefix_postfix, n);
 	if (args->flags.minus)
 		res = ft_strjoin(value_to_print, prefix_postfix);
 	else
