@@ -27,10 +27,19 @@ static char		*get_width(t_param *args)
 	return (str);
 }
 
-static char		*get_precision(t_param *args, char *temp)
+static char		*get_precision(t_param *args, wchar_t *buff)
 {
 	char	*str;
+	char	*temp;
+	int		i;
 
+	temp = ft_strnew(args->l);
+	while(args->l > i)
+	{
+		temp[i] = (char)*buff;
+		buff++;
+		i++;
+	}
 	if (args->precision > 0 && args->precision < args->l)
 		str = ft_strsub(temp, 0, args->precision);
 	else
@@ -47,7 +56,7 @@ char			*ft_handle_wstr(t_param *args, va_list *ap)
 
 	buff = va_arg(*ap, wchar_t*);
 	args->l = (int)(ft_wstrlen((unsigned *)buff));
-	value_to_print = get_precision(args, (char *)buff);
+	value_to_print = get_precision(args, buff);
 	prefix_postfix = get_width(args);
 	if (args->flags.minus)
 		res = ft_strjoin(value_to_print, prefix_postfix);
