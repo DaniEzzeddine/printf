@@ -31,10 +31,10 @@ static int		count_digits(long long n)
 
 static void		add_ox(t_param *args, char **value, char **prefix)
 {
-		if (!args->dot && !args->flags.minus && args->flags.zero)
-			*prefix = ft_strjoin(ft_strsub("0x", 0, 2), *prefix);
-		else
-			*value = ft_strjoin(ft_strsub("0x", 0, 2), *value);
+	if (!args->dot && !args->flags.minus && args->flags.zero)
+		*prefix = ft_strjoin(ft_strsub("0x", 0, 2), *prefix);
+	else
+		*value = ft_strjoin(ft_strsub("0x", 0, 2), *value);
 	return ;
 }
 

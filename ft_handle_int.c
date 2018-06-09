@@ -72,26 +72,23 @@ static char		*get_width(t_param *args, long long n)
 	char	*res;
 	char	*start_of_res;
 	int		sym_to_print;
-	int		check_for_zero;
 	char	zero_or_space;
 
-	check_for_zero = 0;
+	zero_or_space = '1';
 	if (!args->dot && !args->flags.minus && args->flags.zero)
 	{
-		check_for_zero = 1;
+		zero_or_space = '0';
 		if (n < 0 || args->flags.space)
 			(args->l)++;
 	}
 	sym_to_print = args->width > args->l ? args->width : 0;
-	res = ft_strnew(sym_to_print + 1);
+	res = ft_strnew(sym_to_print);
 	start_of_res = res;
-	ft_bzero(res, sym_to_print + 1);
-	zero_or_space = (check_for_zero ? '0' : ' ');
-	if (args->flags.space && !args->flags.plus && check_for_zero)
+	if (args->flags.space && !args->flags.plus && zero_or_space == '0')
 		*(res)++ = ' ';
-	else if (n < 0 && check_for_zero)
+	else if (n < 0 && zero_or_space == '0')
 		*(res++) = '-';
-	else if (args->flags.plus && check_for_zero && args->l++)
+	else if (args->flags.plus && zero_or_space == '0' && args->l++)
 		*(res++) = '+';
 	while (sym_to_print > args->l++)
 		*(res++) = zero_or_space;

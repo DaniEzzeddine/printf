@@ -24,7 +24,6 @@ static char		*get_width(t_param *args)
 	if (!args->flags.minus && args->flags.zero)
 		zero_or_space = '0';
 	str = ft_strnew(num);
-
 	ft_memset(str, zero_or_space, num);
 	return (str);
 }
@@ -42,7 +41,7 @@ char			*ft_handle_char(t_param *args, va_list *ap)
 	args->l = 1;
 	prefix_postfix = get_width(args);
 	res = ft_strnew(ft_strlen(prefix_postfix) + 1);
-	if (args->flags.minus && temp != '\0')
+	if (args->flags.minus)
 	{
 		*(res) = temp;
 		ft_strcpy(res + 1, prefix_postfix);

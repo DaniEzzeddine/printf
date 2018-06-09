@@ -14,7 +14,7 @@
 
 static int		count_digits(unsigned long long n)
 {
-	int			i;
+	int					i;
 	unsigned long long	temp;
 
 	temp = n;

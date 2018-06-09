@@ -1,18 +1,26 @@
-#C = clang
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: maljean <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/06/06 03:01:42 by maljean           #+#    #+#              #
+#    Updated: 2018/06/06 03:08:22 by maljean          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+C = clang
 
 NAME = libftprintf.a
 
-#FLAGS = -Wall -Wextra -Werror -O2
+FLAGS = -Wall -Wextra -Werror -O2
 
-#LIBFT = libft
+LIBFT = libft
 
-#DIR_S = sources
+LIB = libft.a
 
-#DIR_O = temporary
-
-#HEADER = include
-
-#SOURCES = convert.c \
+SOURCES = convert.c \
 		  ft_handle_addr.c \
 		  ft_handle_char.c \
 		  ft_handle_int.c \
@@ -26,34 +34,22 @@ NAME = libftprintf.a
 		  ft_handle_uint.c \
 		  ft_parse_specifier.c
 
-#OBJS = $(SOURCES:.c=.o)
+OBJS = $(SOURCES:.c=.o)
 
-#all: $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS)
-	gcc -c *.c libft/*.c libft/*.c
-	ar rc $(NAME) *.o
+$(NAME):
+	make -C $(LIBFT)
+	$(CC) $(FLAGS) -c $(SOURCES) -I $(LIBFT)
+	ar rc $(NAME) $(OBJS) $(LIBFT)/*.o
 	ranlib $(NAME)
-#	@make -C $(LIBFT)
-#	@ar rc $(NAME) $(OBJS)
-#	@ranlib $(NAME)
 
-#$(DIR_O)/%.o: $(DIR_S)/%.c
-#	@mkdir -p temporary
-#	@$(CC) $(FLAGS) -I -o $@ -c $<
-
-#norme:
-#	norminette ./libft/
-#	@echo
-#	norminette
-
-#clean:
-	@rm -f $(OBJS)
-	@rm -rf $(DIR_O)
-#	@make clean -C $(LIBFT)
+clean:
+	rm -f $(OBJS)
+	make clean -C $(LIBFT)
 
 fclean: clean
-	@rm -f $(NAME)
-#	@make fclean -C $(LIBFT)
+	rm -f $(NAME)
+	rm -f $(LIBFT)/$(LIB)
 
 re: fclean all
