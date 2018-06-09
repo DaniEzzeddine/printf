@@ -74,7 +74,7 @@ static char		*get_width(t_param *args, long long n)
 	int		sym_to_print;
 	char	zero_or_space;
 
-	zero_or_space = '1';
+	zero_or_space = ' ';
 	if (!args->dot && !args->flags.minus && args->flags.zero)
 	{
 		zero_or_space = '0';
