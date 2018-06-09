@@ -83,7 +83,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 
 $(OBJ): $(SRCS)
-	gcc -c -I$(CFLAGS) $(SRCS)
+	gcc -c $(CFLAGS) $(SRCS)
 
 clean:
 	rm -f $(OBJ)
