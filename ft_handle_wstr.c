@@ -44,14 +44,10 @@ char			*ft_handle_wstr(t_param *args, va_list *ap)
 	char	*value_to_print;
 	char	*prefix_postfix;
 	wchar_t	*buff;
-	char	*temp;
 
 	buff = va_arg(*ap, wchar_t*);
-	temp = (char *)buff;
-	if (!(temp))
-		temp = 0;
-	args->l = ft_strlen(temp);
-	value_to_print = get_precision(args, temp);
+	args->l = (int)(ft_wstrlen((unsigned *)buff));
+	value_to_print = get_precision(args, (char *)*buff);
 	prefix_postfix = get_width(args);
 	if (args->flags.minus)
 		res = ft_strjoin(value_to_print, prefix_postfix);
