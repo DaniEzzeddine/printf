@@ -23,6 +23,7 @@ LIB = libft.a
 SOURCES = convert.c \
 		  ft_handle_addr.c \
 		  ft_handle_char.c \
+		  ft_wstr_help.c \
 		  ft_handle_int.c \
 		  ft_handle_str.c \
 		  ft_handle_wstr.c \

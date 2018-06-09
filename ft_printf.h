@@ -49,7 +49,6 @@ char				*ft_handle_uint(t_param *args, va_list *ap);
 char				*ft_handle_str(t_param *arg, va_list *ap);
 char				*ft_handle_int(t_param *args, va_list *ap);
 size_t				ft_wstrlen(unsigned *s);
-size_t				ft_wcharlen(unsigned wc);
 int					ft_algo(t_param *arg, va_list *ap);
 t_func				get_func(char c);
 char				*parse_length(char *format, size_t *i);
