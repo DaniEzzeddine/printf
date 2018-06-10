@@ -33,10 +33,11 @@ static char		*get_precision(t_param *args, wchar_t *buff)
 	char	*temp;
 	int		i;
 
+	i = 0;
 	temp = ft_strnew(args->l);
-	while(args->l > i)
+	while (*((unsigned *)buff) != L'\0')
 	{
-		temp[i] = (char)*buff;
+		temp[i] =*buff;
 		buff++;
 		i++;
 	}
@@ -44,6 +45,7 @@ static char		*get_precision(t_param *args, wchar_t *buff)
 		str = ft_strsub(temp, 0, args->precision);
 	else
 		str = ft_strsub(temp, 0, args->l);
+	free(temp);
 	return (str);
 }
 

@@ -18,7 +18,7 @@ size_t		ft_wstrlen(unsigned *s)
 	len = 0;
 	while (*s != L'\0')
 	{
-		len += ft_wcharlen(*s);
+		len += 1;
 		++s;
 	}
 	return (len);
