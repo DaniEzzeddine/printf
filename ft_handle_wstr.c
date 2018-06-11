@@ -6,7 +6,7 @@
 /*   By: dezzeddi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:59:53 by dezzeddi          #+#    #+#             */
-/*   Updated: 2018/06/06 13:59:55 by dezzeddi         ###   ########.fr       */
+/*   Updated: 2018/06/10 20:00:43 by dezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char		*get_precision(t_param *args, wchar_t *buff)
 	temp = ft_strnew(args->l);
 	while (*((unsigned *)buff) != L'\0')
 	{
-		temp[i] =*buff;
+		temp[i] = *buff;
 		buff++;
 		i++;
 	}

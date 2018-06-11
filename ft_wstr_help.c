@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_wstr_help.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dezzeddi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/10 20:01:33 by dezzeddi          #+#    #+#             */
+/*   Updated: 2018/06/10 20:02:45 by dezzeddi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 static size_t	ft_wcharlen(unsigned wc)
@@ -11,7 +23,7 @@ static size_t	ft_wcharlen(unsigned wc)
 	return (4);
 }
 
-size_t		ft_wstrlen(unsigned *s)
+size_t			ft_wstrlen(unsigned *s)
 {
 	size_t	len;
 
