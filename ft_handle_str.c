@@ -53,16 +53,21 @@ char			*ft_handle_str(t_param *args, va_list *ap)
 	char	*prefix_postfix;
 	char	*temp;
 
-	temp = va_arg(*ap, char *);
-	if (!(temp))
-		temp = "(null)";
-	args->l = ft_strlen(temp);
-	value_to_print = get_precision(args, temp);
-	prefix_postfix = get_width(args);
-	if (args->flags.minus)
-		res = ft_strjoin(value_to_print, prefix_postfix);
+	if (ft_strcmp(args->length, "l"))
+	{
+		temp = va_arg(*ap, char *);
+		if (!(temp))
+			temp = "(null)";
+		args->l = ft_strlen(temp);
+		value_to_print = get_precision(args, temp);
+		prefix_postfix = get_width(args);
+		if (args->flags.minus)
+			res = ft_strjoin(value_to_print, prefix_postfix);
+		else
+			res = ft_strjoin(prefix_postfix, value_to_print);
+		args->l = ft_strlen(res);
+	}
 	else
-		res = ft_strjoin(prefix_postfix, value_to_print);
-	args->l = ft_strlen(res);
+		res = ft_handle_wstr(args, ap);
 	return (res);
 }
