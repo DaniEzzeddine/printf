@@ -6,7 +6,7 @@
 /*   By: dezzeddi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:59:22 by dezzeddi          #+#    #+#             */
-/*   Updated: 2018/06/06 13:59:24 by dezzeddi         ###   ########.fr       */
+/*   Updated: 2018/06/10 21:27:58 by dezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static	char	*get_precision(t_param *args, long long n)
 
 	num_of_dig = count_digits(n);
 	dig_to_print = args->precision > num_of_dig ? args->precision : num_of_dig;
-	res = ft_strnew(dig_to_print);
+	res = ft_strnew(dig_to_print + 1);
 	start_of_res = res;
 	add_minus(args, &res, n);
 	while (args->precision > num_of_dig++)
@@ -82,7 +82,7 @@ static char		*get_width(t_param *args, long long n)
 			(args->l)++;
 	}
 	sym_to_print = args->width > args->l ? args->width : 0;
-	res = ft_strnew(sym_to_print);
+	res = ft_strnew(sym_to_print + 1);
 	start_of_res = res;
 	if (args->flags.space && !args->flags.plus && zero_or_space == '0')
 		*(res)++ = ' ';
