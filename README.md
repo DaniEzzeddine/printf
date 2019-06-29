@@ -1,3 +1,5 @@
+![printf_gif](https://github.com/DaniEzzeddine/printf/blob/master/ft_printf.gif)
+
 # printf
 My implementation of function printf, written on C
 
